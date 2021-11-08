@@ -11,7 +11,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t tynchtyk/project:latest .'
+				sh 'docker build -t amanturr/project:latest .'
 			}
 		}
 
@@ -26,7 +26,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push tynchtyk/project:latest'
+				sh 'docker push amanturr/project:latest'
 			}
 		}
 		
@@ -34,7 +34,7 @@ pipeline{
             steps {
                 withCredentials ([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
-                        sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@${env.dev_ip} \"docker pull tynchtyk/project\""
+                        sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@${env.dev_ip} \"docker pull amantur/project\""
                         try {
                             sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@${env.dev_ip} \"docker stop project\""
                             sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@${env.dev_ip} \"docker rm project\""
