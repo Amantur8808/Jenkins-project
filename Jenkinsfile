@@ -31,7 +31,7 @@ pipeline{
 		}
        	stage ('Deploy to staging') {
             steps {
-                withCredentials ([usernamePassword(credentialsId: 'webserver-login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials ([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@${env.dev_ip} \"docker pull amantur/test\""
                         try {
