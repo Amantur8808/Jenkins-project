@@ -29,7 +29,7 @@ pipeline{
 				sh 'docker push amanturr/test:latest'
 			}
 		}
-		
+
         
         
         stage ('Deploy to production') {
